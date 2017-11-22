@@ -1,10 +1,14 @@
 package com.eric.controller;
 
+import com.eric.common.ApplicationContextHelper;
 import com.eric.common.JsonData;
+import com.eric.dao.SysAclModuleMapper;
 import com.eric.exception.ParamException;
 import com.eric.exception.PermissionException;
+import com.eric.model.SysAclModule;
 import com.eric.param.TestVo;
 import com.eric.util.BeanValidator;
+import com.eric.util.JsonMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.MapUtils;
 import org.springframework.stereotype.Controller;
@@ -40,6 +44,9 @@ public class TestController {
     @ResponseBody
     public JsonData validator(TestVo vo) throws ParamException{
         log.info("validator");
+        SysAclModuleMapper moduleMapper = ApplicationContextHelper.popBean(SysAclModuleMapper.class);
+        SysAclModule module = moduleMapper.selectByPrimaryKey(1);
+        log.info(JsonMapper.obj2String(module));
         BeanValidator.check(vo);
         return JsonData.success("test validator");
     }

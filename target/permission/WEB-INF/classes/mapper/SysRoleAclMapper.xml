@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eric.dao.SysRoleAclMapper" >
+  <resultMap id="BaseResultMap" type="com.eric.model.SysRoleAcl" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="role_uuid" property="roleUuid" jdbcType="INTEGER" />
+    <result column="acl_uuid" property="aclUuid" jdbcType="INTEGER" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="operator_time" property="operatorTime" jdbcType="TIMESTAMP" />
+    <result column="operator_ip" property="operatorIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uuid, role_uuid, acl_uuid, operator, operator_time, operator_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role_acl
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_role_acl
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.eric.model.SysRoleAcl" >
+    insert into sys_role_acl (uuid, role_uuid, acl_uuid, 
+      operator, operator_time, operator_ip
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{roleUuid,jdbcType=INTEGER}, #{aclUuid,jdbcType=INTEGER}, 
+      #{operator,jdbcType=VARCHAR}, #{operatorTime,jdbcType=TIMESTAMP}, #{operatorIp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.eric.model.SysRoleAcl" >
+    insert into sys_role_acl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="roleUuid != null" >
+        role_uuid,
+      </if>
+      <if test="aclUuid != null" >
+        acl_uuid,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="operatorTime != null" >
+        operator_time,
+      </if>
+      <if test="operatorIp != null" >
+        operator_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="roleUuid != null" >
+        #{roleUuid,jdbcType=INTEGER},
+      </if>
+      <if test="aclUuid != null" >
+        #{aclUuid,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorIp != null" >
+        #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eric.model.SysRoleAcl" >
+    update sys_role_acl
+    <set >
+      <if test="roleUuid != null" >
+        role_uuid = #{roleUuid,jdbcType=INTEGER},
+      </if>
+      <if test="aclUuid != null" >
+        acl_uuid = #{aclUuid,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorIp != null" >
+        operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eric.model.SysRoleAcl" >
+    update sys_role_acl
+    set role_uuid = #{roleUuid,jdbcType=INTEGER},
+      acl_uuid = #{aclUuid,jdbcType=INTEGER},
+      operator = #{operator,jdbcType=VARCHAR},
+      operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 @RequestMapping("sys/dept")
 @Slf4j
 public class SysDeptController {
+    
     @Resource
     private SysDeptService sysDeptService;
 

@@ -22,6 +22,7 @@
     <mvc:interceptors>
         <bean class="com.eric.common.HttpInterceptor"/>
     </mvc:interceptors>
+
     <bean class="com.eric.common.ApplicationContextHelper" lazy-init="false"/>
 
     <bean class="com.eric.common.SpringExceptionResolver"/>

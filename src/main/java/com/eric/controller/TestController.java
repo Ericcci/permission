@@ -36,8 +36,8 @@ public class TestController {
     @ResponseBody
     public JsonData hello() {
         log.info("hello");
-        throw new RuntimeException("text exception");
-        //return JsonData.success("hello permission");
+        //throw new RuntimeException("text exception");
+        return JsonData.success("hello permission");
     }
 
     @RequestMapping("/validator.json")

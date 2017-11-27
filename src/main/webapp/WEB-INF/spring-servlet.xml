@@ -19,7 +19,11 @@
     <context:component-scan base-package="com.eric.controller"/>
     <context:component-scan base-package="com.eric.service"/>
 
-    <bean class="com.eric.common.SpringExceptionResolver"/>
+    <mvc:interceptors>
+        <bean class="com.eric.common.HttpInterceptor"/>
+    </mvc:interceptors>
+
+    <bean class="com.eric.common.ApplicationContextHelper" lazy-init="false"/>
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 
